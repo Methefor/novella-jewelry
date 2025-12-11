@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 253 248 243;
+    --foreground: 26 26 26;
+    --primary: 212 175 55;
+    --primary-hover: 201 162 39;
+    --secondary: 183 110 121;
+    --secondary-hover: 165 93 104;
+    --muted: 245 243 238;
+    --muted-foreground: 107 107 107;
+    --accent: 250 248 245;
+    --accent-foreground: 26 26 26;
+    --card: 255 255 255;
+    --card-foreground: 26 26 26;
+    --border: 232 228 220;
+    --ring: 212 175 55;
+  }
+
+  .dark {
+    --background: 15 15 15;
+    --foreground: 245 245 245;
+    --primary: 229 193 88;
+    --primary-hover: 240 208 104;
+    --secondary: 212 145 154;
+    --secondary-hover: 224 163 171;
+    --muted: 26 26 26;
+    --muted-foreground: 160 160 160;
+    --accent: 31 31 31;
+    --accent-foreground: 245 245 245;
+    --card: 22 22 22;
+    --card-foreground: 245 245 245;
+    --border: 42 42 42;
+    --ring: 229 193 88;
+  }
+
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .glass {
+    background-color: rgba(var(--card), 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--border), 0.5);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--primary)),
+      rgb(var(--secondary))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    background-color: rgba(var(--primary), 0.1);
+    color: rgb(var(--primary));
+  }
+
+  .card {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+    @apply rounded-2xl border p-6 shadow-sm;
+  }
+
+  .card-hover {
+    background-color: rgb(var(--card));
+    color: rgb(var(--card-foreground));
+    @apply rounded-2xl border p-6 shadow-sm transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply shadow-lg -translate-y-1;
+    border-color: rgba(var(--primary), 0.3);
+  }
+}
+/* Prevent horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Container fix */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile touch optimization */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
