@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { ThemeProvider } from 'next-themes';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
+import Header from '@/components/Header';
+import CartSidebar from '@/components/CartSidebar';
 
 const cormorant = Cormorant_Garamond({
-  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-cormorant',
   display: 'swap',
 });
@@ -17,37 +18,54 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: 'NOVELLA - Her Parça Bir Hikaye',
-    template: '%s | NOVELLA',
-  },
+  title: 'NOVELLA | Her Parça Bir Hikaye - Premium Çelik Takılar',
   description:
-    'Özel tasarım takılar ile hikayenizi anlatın. Kaliteli, uygun fiyatlı ve özgün takı koleksiyonları.',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    'NOVELLA ile tarzınızı yansıtın. Premium kalitede paslanmaz çelik kolye, bilezik, küpe ve yüzükler. Tekirdağ\'dan sizin için özenle seçilmiş tasarımlar.',
+  keywords: [
+    'takı',
+    'çelik takı',
+    'kolye',
+    'bilezik',
+    'küpe',
+    'yüzük',
+    'paslanmaz çelik',
+    'novella',
+    'jewelry',
+    'aksesuar',
+  ],
+  authors: [{ name: 'NOVELLA' }],
+  openGraph: {
+    title: 'NOVELLA | Her Parça Bir Hikaye',
+    description: 'Premium kalitede çelik takılar ile tarzınızı tamamlayın.',
+    url: 'https://novella-tek.vercel.app',
+    siteName: 'NOVELLA',
+    locale: 'tr_TR',
+    type: 'website',
   },
-  manifest: '/manifest.json',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NOVELLA | Her Parça Bir Hikaye',
+    description: 'Premium kalitede çelik takılar ile tarzınızı tamamlayın.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="tr" suppressHydrationWarning>
+    <html lang="tr" className="dark">
       <body
-        className={`${cormorant.variable} ${inter.variable} font-sans antialiased`}
+        className={`${cormorant.variable} ${inter.variable} min-h-screen bg-[#0F0F0F] font-inter antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Header />
+        <main>{children}</main>
+        <CartSidebar />
       </body>
     </html>
   );

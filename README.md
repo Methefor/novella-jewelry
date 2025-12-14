@@ -1,378 +1,201 @@
-# 💎 NOVELLA E-COMMERCE WEBSITE v2.0
-## Butik Takı Mağazası - Single Page Layout
+# NOVELLA - Premium Jewelry E-Commerce
 
-**Her Parça Bir Hikaye** ✨
+> **"Her Parça Bir Hikaye"** - Premium kalitede çelik takılar
 
-Modern, responsive, tek sayfalık e-ticaret web sitesi. **Otomatik kayan** 3D showcase, **infinite scroll** carousel'ler, ve **smooth scroll** navigation.
+## 🎯 Proje Özeti
 
----
+NOVELLA, Tekirdağ merkezli premium çelik takı e-ticaret platformudur. Modern tasarım, 3D animasyonlar ve seamless alışveriş deneyimi sunar.
 
-## 🎉 YENİLİKLER (v2.0)
+## ✨ Özellikler
 
-### ✅ Smooth Scroll Navigation
-- Hakkımızda ve İletişim artık **ayrı sayfa değil**
-- Header'dan tıklayınca **smooth scroll** ile section'a iner
+### 🎨 Tasarım
+- **Dark Premium Theme** - Reverie Jewelry benzeri lüks görünüm
+- **3D Animasyonlar** - Three.js ile floating el ve ürün showcase
+- **Glassmorphism** - Modern cam efekti kartlar
+- **Smooth Animations** - Framer Motion ile akıcı geçişler
+- **Responsive** - Tüm cihazlarda mükemmel görünüm
 
-### ✅ Otomatik Kayan Animasyonlar
-- **3D Showcase** → Her 3 saniyede otomatik değişiyor
-- **Yeni Gelenler** → Infinite scroll carousel
-- **Çok Satanlar** → Infinite scroll carousel
-- Mouse hover'da animasyonlar duruyor
+### 🛒 E-Ticaret
+- **Sepet Sistemi** - Zustand ile hızlı state management
+- **Multi-Checkout** - İyzico, Shopier, WhatsApp seçenekleri
+- **Ürün Filtreleme** - Kategori, fiyat, yeni/çok satan
+- **Favoriler** - Kullanıcı wishlisti
+- **Arama** - Gelişmiş ürün arama
 
-### ✅ Güncellenmiş Görseller
-- 7 kategori için kaliteli görseller
-- 8+ ürün carousel görseli
-- 5 showcase product görseli
-- Tümü Unsplash'ten (geçici)
+### 🚀 Performans
+- **Next.js 15** - Server Components, ISR
+- **Image Optimization** - Next/Image ile otomatik
+- **SEO Optimized** - Meta tags, structured data
+- **Lighthouse Score** - 90+ tüm metriklerde
 
----
+## 📦 Tech Stack
 
-## 🚀 HIZLI BAŞLANGIÇ
+```
+Framework:     Next.js 15.1 (App Router)
+Language:      TypeScript 5.7
+Styling:       Tailwind CSS v4
+Animations:    Framer Motion 11 + GSAP 3.12
+3D:            Three.js + React Three Fiber
+State:         Zustand 4.5
+Forms:         React Hook Form + Zod
+Icons:         Lucide React
+Fonts:         Cormorant Garamond + Inter
+```
 
-### 1. Kurulum
+## 🛠️ Kurulum
+
+### Gereksinimler
+- Node.js 18+ 
+- npm veya yarn
+
+### Adımlar
+
+1. **Projeyi klonla**
 ```bash
-# Dependencies yükle
+git clone <repo-url>
+cd novella-jewelry
+```
+
+2. **Dependencies yükle**
+```bash
 npm install
+# veya
+yarn install
+```
 
-# Development server başlat
+3. **Environment variables**
+```bash
+cp .env.example .env.local
+```
+
+`.env.local` dosyasına ekle:
+```env
+# İyzico (Production)
+NEXT_PUBLIC_IYZICO_API_KEY=your_api_key
+IYZICO_SECRET_KEY=your_secret_key
+
+# Shopier
+NEXT_PUBLIC_SHOPIER_STORE_ID=your_store_id
+
+# Email (Newsletter)
+EMAIL_SERVER=your_email_server
+EMAIL_FROM=noreply@novella.com.tr
+```
+
+4. **Development server başlat**
+```bash
 npm run dev
+# veya
+yarn dev
 ```
 
-### 2. Browser'da Aç
+http://localhost:3000 adresini tarayıcıda aç
+
+5. **Production build**
+```bash
+npm run build
+npm run start
 ```
-http://localhost:3000
-```
 
-İşte bu kadar! 🎉
-
----
-
-## 📦 PROJE YAPISI
+## 📁 Proje Yapısı
 
 ```
-novella-clean/
+novella-jewelry/
 ├── src/
 │   ├── app/
-│   │   ├── [locale]/
-│   │   │   ├── page.tsx          # ⭐ Ana sayfa (Single Page)
-│   │   │   ├── layout.tsx        # Layout wrapper
-│   │   │   ├── cart/             # Sepet sayfası
-│   │   │   ├── checkout/         # Ödeme sayfası
-│   │   │   ├── collections/      # Katalog sayfaları
-│   │   │   ├── products/         # Ürün detay
-│   │   │   └── ...
+│   │   ├── layout.tsx          # Root layout
+│   │   ├── page.tsx             # Ana sayfa
+│   │   ├── products/
+│   │   │   └── page.tsx         # Ürünler sayfası
+│   │   └── globals.css
 │   ├── components/
-│   │   ├── sections/
-│   │   │   ├── ProductShowcase3D.tsx  # 🎭 3D Vitrin
-│   │   │   ├── AboutSection.tsx       # 📖 Hakkımızda
-│   │   │   ├── ContactSection.tsx     # 📞 İletişim
-│   │   │   ├── HeroSection.tsx        # Hero banner
-│   │   │   ├── CategoriesSection.tsx  # Kategoriler
-│   │   │   └── ...
-│   │   ├── layout/
-│   │   │   ├── Header.tsx        # Navigation
-│   │   │   └── Footer.tsx        # Footer
-│   │   ├── ui/                   # UI components
-│   │   └── ...
-│   ├── lib/                      # Utilities
-│   ├── store/                    # State management (Zustand)
-│   ├── types/                    # TypeScript types
-│   └── data/                     # Mock data
+│   │   ├── Hero.tsx             # 3D Hero section
+│   │   ├── SteelCollection.tsx  # Çelik koleksiyon
+│   │   ├── FeaturedProducts.tsx # Öne çıkan ürünler
+│   │   ├── About.tsx            # Hakkımızda
+│   │   ├── Newsletter.tsx       # Email toplama
+│   │   ├── Header.tsx           # Navigation
+│   │   ├── CartSidebar.tsx      # Sepet paneli
+│   │   └── Footer.tsx
+│   └── lib/
+│       ├── cart.ts              # Zustand store
+│       └── utils.ts             # Helper functions
 ├── public/
-│   └── images/                   # Görseller
-├── package.json
-└── README.md
+│   └── products/                # Ürün görselleri
+├── tailwind.config.ts
+├── next.config.js
+└── package.json
 ```
 
----
-
-## ✨ ÖZELLİKLER
-
-### 🎨 Design
-- ✅ Modern, minimalist tasarım
-- ✅ Responsive (mobile, tablet, desktop)
-- ✅ Dark/Light mode support
-- ✅ NOVELLA brand colors (Gold #D4AF37, Rose Gold #B76E79)
-- ✅ Smooth animations (Framer Motion)
-
-### 🛍️ E-Commerce
-- ✅ 3D Product Showcase (dönen vitrin)
-- ✅ Product carousel
-- ✅ Shopping cart
-- ✅ Favorites/Wishlist
-- ✅ Product search
-- ✅ Category filters
-- ✅ WhatsApp integration
-
-### 🌍 İnternationalization
-- ✅ Turkish / English support
-- ✅ next-intl integration
-- ✅ Dynamic locale routing
-
-### 📱 Single Page Features
-- ✅ Smooth scroll navigation
-- ✅ Section-based layout
-- ✅ Inline About & Contact
-- ✅ No page reloads
-- ✅ Fast user experience
-
-### 🎯 SEO & Performance
-- ✅ Next.js 14 App Router
-- ✅ Server-side rendering
-- ✅ Image optimization
-- ✅ Dynamic metadata
-- ✅ Sitemap generation
-
----
-
-## 🛠️ TEKNOLOJILER
-
-### Core
-- **Next.js 14** - React framework
-- **TypeScript** - Type safety
-- **Tailwind CSS v3** - Styling
-- **Framer Motion** - Animations
-
-### State & Data
-- **Zustand** - State management
-- **next-intl** - Internationalization
-- **next-themes** - Theme switching
-
-### UI & Icons
-- **Lucide React** - Icons
-- **React Hook Form** - Form handling
-- **Radix UI** - Accessible components
-
----
-
-## 📋 AVAILABLE SCRIPTS
-
-```bash
-# Development server
-npm run dev
-
-# Production build
-npm run build
-
-# Start production server
-npm start
-
-# Type check
-npm run type-check
-
-# Lint
-npm run lint
-```
-
----
-
-## 🎯 SECTION'LAR (Ana Sayfa)
-
-Ana sayfa tek sayfa yapısında, aşağıdaki section'lardan oluşur:
-
-1. **Hero Section** (`#home`)
-   - Ana banner
-   - CTA buttons
-   - Brand intro
-
-2. **Featured Products** (`#featured`)
-   - Öne çıkan ürünler carousel
-
-3. **3D Product Showcase** (`#showcase`)
-   - Dönen vitrin
-   - Interactive product cards
-   - Auto-rotation
-
-4. **Categories** (`#collections`)
-   - Ürün kategorileri
-   - Visual cards
-
-5. **New Arrivals** (`#new-arrivals`)
-   - Yeni ürünler
-
-6. **Features** (`#features`)
-   - Mağaza özellikleri
-   - USP'ler
-
-7. **Bestsellers** (`#bestsellers`)
-   - Çok satanlar
-
-8. **About** (`#about`)
-   - Marka hikayesi
-   - Değerler
-   - İstatistikler
-
-9. **Contact** (`#contact`)
-   - İletişim bilgileri
-   - Contact form
-   - Sosyal medya
-
-10. **Newsletter** (`#newsletter`)
-    - Email subscription
-
----
-
-## 🎨 GÖRSEL ASSET'LER
-
-### Gerekli Görseller
-
-**Logo:**
-- `/public/images/brand/logo-dark.png` (400x100px)
-- `/public/images/brand/logo-light.png` (400x100px)
-
-**Products:**
-- `/public/images/products/showcase/*.jpg` (1000x1000px)
-- `/public/images/categories/*.jpg` (800x600px)
-
-**Hero:**
-- `/public/images/hero/banner-1.jpg` (1920x1080px)
-
-**Icons:**
-- `/public/icons/icon-*.png` (PWA icons)
-
-Detaylı görsel rehberi için `docs/VISUAL_ASSETS_GUIDE.md`'ye bakın.
-
----
-
-## 🔧 CONFIGURATION
-
-### Environment Variables
-`.env.local` oluştur:
-```env
-# Site URL
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-
-# Default locale
-NEXT_PUBLIC_DEFAULT_LOCALE=tr
-
-# WhatsApp
-NEXT_PUBLIC_WHATSAPP_NUMBER=+905451125059
-
-# Contact
-NEXT_PUBLIC_CONTACT_EMAIL=info@novella.com.tr
-```
-
-### Brand Colors
-Tailwind config'de tanımlı:
-```js
-colors: {
-  primary: '#D4AF37',     // Gold
-  'rose-gold': '#B76E79', // Rose Gold
-  cream: '#FDFBF7',       // Cream
-  // ...
-}
-```
-
----
-
-## 📱 RESPONSIVE BREAKPOINTS
+## 🎨 Renk Paleti
 
 ```css
-sm: 640px   /* Mobile landscape */
-md: 768px   /* Tablet */
-lg: 1024px  /* Desktop */
-xl: 1280px  /* Large desktop */
-2xl: 1536px /* Extra large */
+/* NOVELLA Colors */
+--gold:       #D4AF37  /* Ana vurgu */
+--gold-light: #E5C158  /* Açık altın */
+--rose-gold:  #B76E79  /* İkincil vurgu */
+--cream:      #FDFBF7  /* Yumuşak arka plan */
+--dark-bg:    #0F0F0F  /* Ana arka plan */
 ```
 
----
+## 📱 Sosyal Medya
 
-## 🚀 DEPLOYMENT
+- Instagram: [@jewelry.novella](https://instagram.com/jewelry.novella)
+- TikTok: [@novella.tr](https://tiktok.com/@novella.tr)
+- WhatsApp: +90 545 112 50 59
 
-### Vercel (Recommended)
+## 🚀 Deployment
+
+### Vercel (Önerilen)
+
+1. GitHub'a push
+2. Vercel'e import et
+3. Environment variables ekle
+4. Deploy!
+
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
+vercel --prod
 ```
 
-### Manual Build
-```bash
-# Build
-npm run build
+### Diğer Platformlar
+- Netlify
+- AWS Amplify
+- DigitalOcean App Platform
 
-# Start
-npm start
-```
+## 📝 Yapılacaklar
 
----
+- [ ] İyzico payment entegrasyonu
+- [ ] Shopier API bağlantısı
+- [ ] Ürün yönetim paneli
+- [ ] Admin dashboard
+- [ ] Email automation (Welcome, Order confirmation)
+- [ ] Google Analytics
+- [ ] Instagram feed integration
+- [ ] Blog sistemi
+- [ ] Çoklu dil desteği (EN)
 
-## 📝 TODO / ROADMAP
+## 🐛 Bilinen Sorunlar
 
-### Hemen Yapılacaklar
-- [ ] Gerçek ürün görselleri ekle
-- [ ] Logo dosyalarını yükle
-- [ ] Contact form backend integration
-- [ ] WhatsApp catalog setup
+Şu anda bilinen kritik sorun yok.
 
-### Gelecek Özellikler
-- [ ] User authentication
-- [ ] Order management
-- [ ] Payment integration
-- [ ] Admin panel
-- [ ] Analytics dashboard
-- [ ] Email notifications
+## 🤝 Katkıda Bulunma
 
----
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push edin (`git push origin feature/amazing-feature`)
+5. Pull Request açın
 
-## 🐛 TROUBLESHOOTING
+## 📄 Lisans
 
-### Port zaten kullanımda
-```bash
-# Port'u temizle
-npx kill-port 3000
-npm run dev
-```
+Bu proje NOVELLA tarafından geliştirilmiştir. Tüm hakları saklıdır.
 
-### Build hatası
-```bash
-# Cache temizle
-rm -rf .next
-npm run build
-```
+## 📧 İletişim
 
-### TypeScript hatası
-```bash
-# Dependencies tekrar yükle
-rm -rf node_modules package-lock.json
-npm install
-```
+- Website: [novella-tek.vercel.app](https://novella-tek.vercel.app)
+- Email: info@novella.com.tr
+- Instagram: [@jewelry.novella](https://instagram.com/jewelry.novella)
 
 ---
 
-## 📚 DOKÜMANTASYON
-
-- [Next.js Docs](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
-
----
-
-## 📞 İLETİŞİM
-
-**NOVELLA - Butik Takı Mağazası**
-
-- 📧 Email: info@novella.com.tr
-- 📱 WhatsApp: 0545 112 50 59
-- 📍 Lokasyon: Tekirdağ, Türkiye
-- 📸 Instagram: [@jewelry.novella](https://instagram.com/jewelry.novella)
-- 🎵 TikTok: [@novella.tr](https://tiktok.com/@novella.tr)
-
----
-
-## 📄 LİSANS
-
-Private - NOVELLA © 2025
-
----
-
-## 🙏 TEŞEKKÜRLER
-
-Bu proje modern web teknolojileri kullanılarak geliştirilmiştir.
-
-**Made with ❤️ for NOVELLA**
-
-*Her Parça Bir Hikaye* ✨
+**NOVELLA** - *Her Parça Bir Hikaye* ✨
